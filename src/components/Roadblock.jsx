@@ -1,7 +1,8 @@
 import React from 'react';
 
-const Roadblock = () => {
-  return <div className='roadblock'></div>
+const Roadblock = (props) => {
+  let id = 'roadblock' + props.num
+  return <div id={id} className='roadblock'></div>
 }
 
 export default Roadblock;
