@@ -1,9 +1,31 @@
+
+
 .board {
-    margin-top: 10%;
-    margin-bottom: 10%;
-    margin-left: 25%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
     display: block;
     width: 50%;
     height: 50%;
     border: 3px solid green;
+    overflow: hidden
+}
+
+.car, .roadblock {
+  display: inline-block;
+  position: relative;
+  top: 89%;
+  width: 30px;
+  height: 30px;
+}
+
+.car {
+  left: 50%;
+  background: red
+}
+
+.roadblock {
+  left: 110%;
+  background: brown;
 }
