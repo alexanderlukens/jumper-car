@@ -4,7 +4,7 @@
 This game is ideal for everyone with a few minutes to kill.
 
 ## Summary ##
-Its easy, jump your car over the speed bumps by clicking the space bar.. The more speed bumps you jump the higher your score goes. 
+Its easy, jump your car over the speed bumps by clicking the space bar.. The more speed bumps you jump the higher your score goes.
 
 ## Problem ##
 Helps to fill in those 10 minute time periods between tasks where you have nothing to do
