@@ -30,7 +30,11 @@ class App extends React.Component {
   }
 
   start() {
-    this.state.timeIntervals.push(setInterval(this.collisionAndScoring.bind(this),100))
+    let startCollisionAndScoringWatcher = () => {
+      this.state.timeIntervals.push(setInterval(this.collisionAndScoring.bind(this),100))
+    }
+    setTimeout(startCollisionAndScoringWatcher, 4000)
+
     if (this.state.started === false){
       this.setState({
         started: true,
