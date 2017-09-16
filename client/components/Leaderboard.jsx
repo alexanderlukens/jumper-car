@@ -2,6 +2,7 @@ import React from 'react';
 import LeaderboardEntry from './LeaderboardEntry.jsx'
 
 const Leaderboard = (props) => {
+  console.log(props.topPlayers.map)
   const entrys = props.topPlayers.map((entry, i) => {
     return (<LeaderboardEntry username={entry.username} score={entry.score} rank={i + 1} key={i}/>)
   })

@@ -111,6 +111,7 @@ class App extends React.Component {
       let username = prompt('Please Enter a Username');
       axios.get('/scores')
       .then((data) => {
+        console.log(data)
         this.setState({
           username: username,
           topPlayers: data.data
