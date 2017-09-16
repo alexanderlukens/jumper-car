@@ -5,7 +5,7 @@ import Roadblock from './Roadblock.jsx';
 import Score from './Score.jsx';
 import Username from './Username.jsx';
 import Leaderboard from './Leaderboard.jsx';
-import axios from 'Axios'
+import axios from 'axios'
 import _ from 'underscore'
 
 
