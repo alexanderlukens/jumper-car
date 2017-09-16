@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   jump() {
-    $( ".car" ).animate({top:'60%'}, 300, () => {
+    $( ".car" ).animate({top:'50%'}, 300, () => {
       $( ".car" ).animate({top:'89%'}, 400)
     });
   }
@@ -37,7 +37,6 @@ class App extends React.Component {
         boardClasses: 'board',
         score: 0
       }, () => {
-        this.moveRoadBlock(1)
         let i = 1;
         while (i < 4) {
           this.state.timeIntervals.push(this.setRoadBlockRunners(i));
