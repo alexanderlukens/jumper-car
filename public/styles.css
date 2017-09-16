@@ -46,6 +46,19 @@ tbody {
   margin-bottom: -10px;
 }
 
+.jump, .start, .user, .score {
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+.jump, .start {
+  background-color: green;
+  background-image: linear-gradient(green,lightgreen);
+  text-decoration: none;
+  color: #fff;
+}
+
 .jump {
   margin-left: 100px;
   width: 50%;
