@@ -4,6 +4,7 @@ import Car from './Car.jsx';
 import Roadblock from './Roadblock.jsx';
 import Score from './Score.jsx';
 import Username from './Username.jsx';
+import axios from 'Axios'
 import _ from 'underscore'
 
 
@@ -16,7 +17,8 @@ class App extends React.Component {
       timeIntervals: [],
       boardClasses: 'board',
       score: 0,
-      username: ''
+      username: '',
+      top25: []
     };
   }
 
@@ -70,10 +72,23 @@ class App extends React.Component {
     this.state.timeIntervals.forEach((id) => {
       clearInterval(id);
     })
+    //want to envoke the lose banner immediately, thus moved this out of set state in the promise from the get request
     this.setState({
-      started: false,
-      timeIntervals: [],
-      boardClasses: 'board loser'
+      boardClasses: 'board loser',
+    })
+    axios.post('/scores', {
+      username: this.state.username,
+      score: this.state.score
+    })
+    .then(() => {
+      axios.get('/scores')
+      .then((data) => {
+        this.setState({
+          started: false,
+          timeIntervals: [],
+          top25: data
+        })
+      })
     })
   }
 
@@ -93,7 +108,15 @@ class App extends React.Component {
 
   componentDidMount() {
       let username = prompt('Please Enter a Username');
-      this.setState({username: username})
+      axios.get('/scores')
+      .then((data) => {
+        this.setState({
+          username: username,
+          top25: data
+        }, () => {
+          console.log(this.state.top25)
+        })
+      })
     }
 
   render() {
