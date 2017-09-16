@@ -3,7 +3,7 @@ const db = require('./db.js')
 exports.scores = {
   get: function(req, res) {
     db.Score.find({})
-      .limit(25)
+      .limit(10)
       .sort({score: -1})
       .exec(function(err, data) {
         res.send(data)

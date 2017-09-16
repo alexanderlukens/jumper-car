@@ -19,7 +19,7 @@ class App extends React.Component {
       boardClasses: 'board',
       score: 0,
       username: '',
-      top25: []
+      topPlayers: []
     };
   }
 
@@ -87,7 +87,7 @@ class App extends React.Component {
         this.setState({
           started: false,
           timeIntervals: [],
-          top25: data.data
+          topPlayers: data.data
         })
       })
     })
@@ -103,7 +103,7 @@ class App extends React.Component {
   moveRoadBlock(num) {
     $( `#roadblock${num}`).animate({left:'-15%'}, 4000, () => {
       $(`#roadblock${num}`).attr("class","roadblock");
-      $( `#roadblock${num}`).animate({left:'110%'}, 0)
+      $( `#roadblock${num}`).animate({left:'100%'}, 0)
     })
   }
 
@@ -113,7 +113,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState({
           username: username,
-          top25: data.data
+          topPlayers: data.data
         }, () => {
         })
       })
@@ -122,17 +122,19 @@ class App extends React.Component {
   render() {
     return (
       <div className='container'>
-      <button onClick={this.start.bind(this)}>Start Game</button>
-      <Score score={this.state.score}/>
-      <Username user={this.state.username}/>
-      <div className={this.state.boardClasses}>
-        <Roadblock num={1}/>
-        <Roadblock num={2}/>
-        <Roadblock num={3}/>
-        <Car/>
-      </div>
-      <Leaderboard top25={this.state.top25}/>
-      <button className='jump' onClick={_.throttle(this.jump.bind(this), 700)}>JUMP</button>
+        <div className="topbar">
+          <button onClick={this.start.bind(this)} className="start">Start Game</button>
+          <Score score={this.state.score}/>
+          <Username user={this.state.username}/>
+        </div>
+        <div className={this.state.boardClasses}>
+          <Roadblock num={1}/>
+          <Roadblock num={2}/>
+          <Roadblock num={3}/>
+          <Car/>
+        </div>
+        <Leaderboard topPlayers={this.state.topPlayers}/>
+        <button className='jump' onClick={_.throttle(this.jump.bind(this), 700)}>JUMP</button>
       </div>
     )
 

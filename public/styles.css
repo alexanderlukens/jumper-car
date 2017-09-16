@@ -1,15 +1,44 @@
 
+caption {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+td, th {
+  width: 100px;
+  height: 24px;
+  text-align: center;
+}
+table {
+    border: 3px solid green;
+}
+
+tbody {
+  display: block;
+  overflow: scroll;
+}
 
 .board {
-    margin-top: 30px;
     margin-bottom: 10px;
     margin-left: 100px;
     margin-right: 100px;
-    display: block;
+    display: inline-block;
     width: 50%;
     height: 50%;
     border: 3px solid green;
     overflow: hidden
+}
+
+.leaderboard {
+  display: inline-block;
+  width: 350px;
+  height: 50%;
+  margin-bottom: 40px;
+}
+
+.topbar {
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .jump {
@@ -31,8 +60,16 @@
 }
 
 .roadblock {
-  left: 110%;
+  left: 100%;
   background: brown;
+}
+
+.start, .user, .score {
+  display: inline-block;
+}
+
+.user, .score {
+  margin-left: 20px
 }
 
 .loser {
