@@ -4,6 +4,7 @@ import Car from './Car.jsx';
 import Roadblock from './Roadblock.jsx';
 import Score from './Score.jsx';
 import Username from './Username.jsx';
+import _ from 'underscore'
 
 
 class App extends React.Component {
@@ -107,7 +108,7 @@ class App extends React.Component {
         <Roadblock num={3}/>
         <Car/>
       </div>
-      <button onClick={this.jump}>JUMP</button>
+      <button onClick={_.throttle(this.jump.bind(this), 700)}>JUMP</button>
       </div>
     )
 
