@@ -29,3 +29,10 @@
   left: 110%;
   background: brown;
 }
+
+.loser {
+  background-image: url("./loser.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 100;
+}

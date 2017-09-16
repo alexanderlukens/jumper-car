@@ -2,6 +2,8 @@ import React from 'react';
 import $ from 'jquery'
 import Car from './Car.jsx';
 import Roadblock from './Roadblock.jsx';
+import Score from './Score.jsx';
+import Username from './Username.jsx';
 
 
 class App extends React.Component {
@@ -10,7 +12,10 @@ class App extends React.Component {
     super();
     this.state = {
       started: false,
-      timeIntervals: []
+      timeIntervals: [],
+      boardClasses: 'board',
+      score: 0,
+      username: ''
     };
   }
 
@@ -22,7 +27,10 @@ class App extends React.Component {
 
   start() {
     if (this.state.started === false){
-      this.setState({started: true}, () => {
+      this.setState({
+        started: true,
+        boardClasses: 'board'
+      }, () => {
         this.moveRoadBlock(1)
         let i = 1;
         while (i < 4) {
@@ -34,7 +42,16 @@ class App extends React.Component {
   }
 
   collision() {
-    console.log($('.car').position())
+    let carPosition = $('.car').position()
+    let carX = carPosition.left
+    let carY = carPosition.top
+    $('.roadblock').each((i, rb) => {
+      let rbX = $(rb).position().left
+      let rbY = $(rb).position().top
+      if (Math.abs(carX - rbX) < 30 && Math.abs(carY - rbY) < 30) {
+        this.end()
+      }
+    });
   }
 
   end() {
@@ -42,8 +59,9 @@ class App extends React.Component {
       clearInterval(id);
     })
     this.setState({
-      started: true,
-      timeIntervals: []
+      started: false,
+      timeIntervals: [],
+      boardClasses: 'board loser'
     })
   }
 
@@ -55,23 +73,30 @@ class App extends React.Component {
   }
 
   moveRoadBlock(num) {
-    $( `#roadblock${num}` ).animate({left:'-10%'}, 4000, () => {
+    $( `#roadblock${num}`).animate({left:'-10%'}, 4000, () => {
       $( `#roadblock${num}`).animate({left:'110%'}, 0)
     })
   }
 
+  componentDidMount() {
+      setInterval(this.collision.bind(this),100)
+      let username = prompt('Please Enter a Username');
+      this.setState({username: username})
+    }
 
   render() {
     return (
       <div className='container'>
       <button onClick={this.start.bind(this)}>Start Game</button>
-        <div className="board">
-          <Roadblock num={1}/>
-          <Roadblock num={2}/>
-          <Roadblock num={3}/>
-          <Car/>
-        </div>
-        <button onClick={this.jump}>JUMP</button>
+      <Score score={this.state.score}/>
+      <Username user={this.state.username}/>
+      <div className={this.state.boardClasses}>
+        <Roadblock num={1}/>
+        <Roadblock num={2}/>
+        <Roadblock num={3}/>
+        <Car/>
+      </div>
+      <button onClick={this.jump}>JUMP</button>
       </div>
     )
 
