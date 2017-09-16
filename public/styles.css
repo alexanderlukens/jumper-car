@@ -37,8 +37,10 @@ tbody {
 }
 
 .topbar {
+  display: block;
   margin-left: 100px;
   margin-right: 100px;
+  margin-bottom: -10px;
 }
 
 .jump {
