@@ -26,10 +26,12 @@ class App extends React.Component {
   }
 
   start() {
+    this.state.timeIntervals.push(setInterval(this.collisionAndScoring.bind(this),100))
     if (this.state.started === false){
       this.setState({
         started: true,
-        boardClasses: 'board'
+        boardClasses: 'board',
+        score: 0
       }, () => {
         this.moveRoadBlock(1)
         let i = 1;
@@ -41,7 +43,7 @@ class App extends React.Component {
     }
   }
 
-  collision() {
+  collisionAndScoring() {
     let carPosition = $('.car').position()
     let carX = carPosition.left
     let carY = carPosition.top
@@ -50,6 +52,15 @@ class App extends React.Component {
       let rbY = $(rb).position().top
       if (Math.abs(carX - rbX) < 30 && Math.abs(carY - rbY) < 30) {
         this.end()
+        return
+      }
+      //if no collisin check for scoring
+      if ((carX - rbX) > 0 && $(rb).attr("class") !== 'roadblock scored') {
+        this.setState({
+          score: this.state.score + 1
+        })
+        $(rb).attr("class","roadblock scored");
+        return
       }
     });
   }
@@ -73,13 +84,13 @@ class App extends React.Component {
   }
 
   moveRoadBlock(num) {
-    $( `#roadblock${num}`).animate({left:'-10%'}, 4000, () => {
+    $( `#roadblock${num}`).animate({left:'-15%'}, 4000, () => {
+      $(`#roadblock${num}`).attr("class","roadblock");
       $( `#roadblock${num}`).animate({left:'110%'}, 0)
     })
   }
 
   componentDidMount() {
-      setInterval(this.collision.bind(this),100)
       let username = prompt('Please Enter a Username');
       this.setState({username: username})
     }
