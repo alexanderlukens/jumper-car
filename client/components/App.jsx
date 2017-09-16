@@ -4,6 +4,7 @@ import Car from './Car.jsx';
 import Roadblock from './Roadblock.jsx';
 import Score from './Score.jsx';
 import Username from './Username.jsx';
+import Leaderboard from './Leaderboard.jsx';
 import axios from 'Axios'
 import _ from 'underscore'
 
@@ -86,7 +87,7 @@ class App extends React.Component {
         this.setState({
           started: false,
           timeIntervals: [],
-          top25: data
+          top25: data.data
         })
       })
     })
@@ -112,9 +113,8 @@ class App extends React.Component {
       .then((data) => {
         this.setState({
           username: username,
-          top25: data
+          top25: data.data
         }, () => {
-          console.log(this.state.top25)
         })
       })
     }
@@ -131,6 +131,7 @@ class App extends React.Component {
         <Roadblock num={3}/>
         <Car/>
       </div>
+      <Leaderboard top25={this.state.top25}/>
       <button className='jump' onClick={_.throttle(this.jump.bind(this), 700)}>JUMP</button>
       </div>
     )
