@@ -108,7 +108,7 @@ class App extends React.Component {
         <Roadblock num={3}/>
         <Car/>
       </div>
-      <button onClick={_.throttle(this.jump.bind(this), 700)}>JUMP</button>
+      <button className='jump' onClick={_.throttle(this.jump.bind(this), 700)}>JUMP</button>
       </div>
     )
 

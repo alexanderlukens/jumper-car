@@ -2,7 +2,7 @@
 
 .board {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     margin-left: 100px;
     margin-right: 100px;
     display: block;
@@ -10,6 +10,11 @@
     height: 50%;
     border: 3px solid green;
     overflow: hidden
+}
+
+.jump {
+  margin-left: 100px;
+  width: 50%;
 }
 
 .car, .roadblock {
